@@ -3,7 +3,7 @@ import { ChildProcess, fork } from 'child_process';
 import { existsSync } from 'fs';
 import path from 'path';
 import WebSocket from 'ws';
-import Pino from 'pino';
+import Pino, { Logger } from 'pino';
 import { Match, Room, User } from '../db';
 import config from '../lib/config';
 import server from './server';
@@ -58,7 +58,7 @@ export default class RoomHandler {
   }
 
   /** room specific logger */
-  logger: Pino;
+  logger: Logger;
 
   /** for the game registered users */
   gameRegistration: Record<string, GameUserStatus>;
@@ -98,7 +98,7 @@ export default class RoomHandler {
    * @param userId user id to check
    * @param socket socket to add
    */
-  processWsForward(headers: Record<string, string>, userId: string, socket: any) {
+  processWsForward(headers: Record<string, string | string[]>, userId: string, socket: any) {
     try {
       // ensure game process is running
       if (!this.process) {

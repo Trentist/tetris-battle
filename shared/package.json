@@ -1,4 +1,7 @@
 {
+  "engines" : {
+    "node" : ">=14.0.0 <15.0.0"
+  },
   "dependencies": {
     "@types/lodash": "^4.14.165",
     "lodash": "^4.17.20",
@@ -12,6 +15,9 @@
     "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-plugin-import": "^2.20.2",
     "typescript": "^3.9.6"
+  },
+  "scripts": {
+    "postinstall": "yarn link"
   },
   "main": "./index.ts",
   "name": "@battletris/shared"
